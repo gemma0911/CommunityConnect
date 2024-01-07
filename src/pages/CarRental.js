@@ -4,14 +4,20 @@ const CarRental = () => {
     const [carData, setCarData] = useState([]);
     const navigate = useNavigate()
 
+<<<<<<< HEAD
     // Kiểm tra nếu người dùng chưa đăng nhập thì trở về trang chủ
+=======
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
     useEffect(() => {
         if (!localStorage.getItem('id')) {
             navigate('/')
         }
     }, [localStorage.getItem('id')])
 
+<<<<<<< HEAD
     // Lấy dữ liệu thuê xe tự lái theo người dùng đăng nhập
+=======
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
     const fetchData = async () => {
         try {
             const response = await fetch(`http://localhost:8080/findRentalById/${localStorage.getItem('id')}`, {
@@ -30,7 +36,10 @@ const CarRental = () => {
         }
     };
 
+<<<<<<< HEAD
     // Xóa dữ liệu thuê xe khi chưa xác nhận 
+=======
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
     const deleteHandle = async (idCar) => {
         try {
             const response = await fetch(`http://localhost:8080/deleteCarRental/${idCar}`, {
@@ -59,10 +68,16 @@ const CarRental = () => {
             <table class="border-collapse lg:w-[1400px] w-[500px] mx-auto m-[20px]">
                 <thead>
                     <tr>
+<<<<<<< HEAD
                         <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Tên người thuê</th>
                         <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Tên xe</th>
                         <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Biển số</th>
                         {/* <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Hãng</th> */}
+=======
+                        <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Tên xe</th>
+                        <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Biển số</th>
+                        <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Hãng</th>
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
                         <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">SDT</th>
                         <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">CCCD</th>
                         <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">EMAIL</th>
@@ -83,6 +98,7 @@ const CarRental = () => {
                                         {item.name}
                                     </td>
                                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+<<<<<<< HEAD
                                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Company name</span>
                                         {item.car.name}
                                     </td>
@@ -90,6 +106,11 @@ const CarRental = () => {
                                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Country</span>
                                         {item.car.numberPlate}
                                     </td> */}
+=======
+                                        <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Country</span>
+                                        {item.car.numberPlate}
+                                    </td>
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
                                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Country</span>
                                         {item.car.brand.name}
@@ -117,7 +138,10 @@ const CarRental = () => {
                                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
 
                                         {
+<<<<<<< HEAD
                                             // Nếu status xe đã xác nhận thì hiển thị đã xử lý ngược lại hiển thị đang xử lý
+=======
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
                                             (item.status == "YES") ? (
                                                 <>
                                                     <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Status</span>
@@ -136,7 +160,11 @@ const CarRental = () => {
                                         {item.salary ? item.salary.toLocaleString('en-US', { minimumFractionDigits: 2 }) : '0.00'}
                                     </td>
                                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+<<<<<<< HEAD
                                         { // Nếu status xe đã xác nhận thì không thể xóa
+=======
+                                        {
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
                                             (item.status == "YES") ? (
                                                 <>
                                                    <button class="rounded bg-green-600 py-1 px-3 text-xs font-bold hover:bg-blue-800">Không thể xóa</button>

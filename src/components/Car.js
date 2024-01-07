@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Car = () => {
+<<<<<<< HEAD
     // Chứa dữ liệu trên ô tìm kiếm
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -9,6 +10,11 @@ const Car = () => {
     const [carData, setCarData] = useState([]);
 
     // Lấy dữ liệu xe từ server
+=======
+    const [searchTerm, setSearchTerm] = useState('');
+    const [carData, setCarData] = useState([]);
+
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -25,16 +31,23 @@ const Car = () => {
         fetchData();
     }, []);
 
+<<<<<<< HEAD
     // Lấy giá trị trên thanh tim kiếm
+=======
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
     };
 
+<<<<<<< HEAD
     // Lấy những dữ liệu xe có theo tên và giá
     const filteredCarData = carData.filter(item =>
         item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.price.toString().includes(searchTerm.toLowerCase())
     );
+=======
+    const filteredCarData = carData.filter(item => item.name.toLowerCase().includes(searchTerm.toLowerCase()));
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
 
     return (
         <div>

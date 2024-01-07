@@ -1,15 +1,22 @@
 import { useEffect, useState } from "react";
 import { storage, ref, uploadBytes, getDownloadURL } from "../../firebase";
+<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
 const CarAdmin = () => {
 
     const [showForm, setShowForm] = useState(false);
     const [editForm, setEditForm] = useState(false);
 
+=======
+
+const CarAdmin = () => {
+    const [showForm, setShowForm] = useState(false);
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
     const [searchTerm, setSearchTerm] = useState('');
     const [carData, setCarData] = useState([]);
     const [brand, setBrand] = useState([]);
     const [selectedFile, setSelectedFile] = useState(null);
+<<<<<<< HEAD
     const [downloadURL, setDownloadURL] = useState('');
 
     const [editFromData, setEditFormData] = useState({
@@ -32,11 +39,16 @@ const CarAdmin = () => {
     }, [localStorage.getItem('role')])
 
     // Lấy file khi chọn
+=======
+    const [downloadURL, setDownloadURL] = useState(null);
+
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         setSelectedFile(file);
     };
 
+<<<<<<< HEAD
     // Thực hiện gửi dữ liệu mới của xe về server để cập nhập
     const edit = async () => {
         try {
@@ -105,6 +117,21 @@ const CarAdmin = () => {
     };
 
     // Để lưu dữ liệu trong form thêm xe mới
+=======
+    const handleUpload = () => {
+        if (selectedFile) {
+          const storageRef = ref(storage, selectedFile.name);
+    
+          uploadBytes(storageRef, selectedFile).then((snapshot) => {
+            console.log("File uploaded successfully");
+            getDownloadURL(snapshot.ref).then((url) => {
+              console.log("Download URL:", url);
+              setDownloadURL(url);
+            });
+          });
+        }
+      };
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
     const [dataFrom, setDataForm] = useState({
         name: '',
         numberPlate: '',
@@ -116,7 +143,10 @@ const CarAdmin = () => {
         }
     });
 
+<<<<<<< HEAD
     // Đóng form và gán dữ liệu bằng null khi đóng form thêm xe
+=======
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
     const closeHandle = () => {
         setShowForm(!showForm)
         setDataForm({
@@ -131,11 +161,15 @@ const CarAdmin = () => {
         })
     }
 
+<<<<<<< HEAD
     // thực hiện thay đổi giá trị trong dataForm khi ta thay đổi giá trị trong ô input của form thêm mới xe
+=======
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
     const handleChange = (e) => {
         const { name, value } = e.target;
         setDataForm((prevData) => ({ ...prevData, [name]: value }));
     };
+<<<<<<< HEAD
     
     // thực hiện thay đổi giá trị trong editFormData khi ta thay đổi giá trị trong ô input trong form edit
     const handleChange1 = (e) => {
@@ -144,6 +178,9 @@ const CarAdmin = () => {
     };
     
     // Lấy tất cả dữ liệu của xe
+=======
+
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
     const fetchData = async () => {
         try {
             const response = await fetch('http://localhost:8080/getAllCar');
@@ -157,12 +194,48 @@ const CarAdmin = () => {
         }
     };
 
+<<<<<<< HEAD
     // Thực hiện hàm lấy dữ liệu xe
+=======
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
     useEffect(() => {
         fetchData();
     }, []);
 
+<<<<<<< HEAD
     // Thực hiện xóa xe theo id
+=======
+    const handleSave = async () => {
+        try {
+            handleUpload()
+            const response = await fetch(`http://localhost:8080/addCart`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: dataFrom.name,
+                    numberPlate: dataFrom.numberPlate,
+                    info: dataFrom.info,
+                    images: downloadURL,
+                    price: dataFrom.price,
+                    brand: {
+                        id: dataFrom.brand.id
+                    }
+                }),
+            });
+            if (response.ok) {
+                alert("Thêm thành công")
+                fetchData()
+                setShowForm(!showForm)
+            } else {
+            }
+        } catch (error) {
+            console.error('Error updating user:', error);
+        }
+    };
+
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
     const deleteHandle = async (idCar) => {
         try {
             const response = await fetch(`http://localhost:8080/deleteCar/${idCar}`, {
@@ -184,7 +257,10 @@ const CarAdmin = () => {
         }
     };
 
+<<<<<<< HEAD
     // Thực hiện lấy thương hiệu xe
+=======
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -201,6 +277,7 @@ const CarAdmin = () => {
         fetchData();
     }, []);
 
+<<<<<<< HEAD
     // Đóng form edit và setEditFormData bằng dữ liệu mình cần cập nhập
     const editHandle = (e) => {
         setEditForm(!editForm)
@@ -208,6 +285,12 @@ const CarAdmin = () => {
     }
 
     // Tìm kiếm theo tên xe
+=======
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
     const filteredCarData = carData.filter(item => item.name.toLowerCase().includes(searchTerm.toLowerCase()));
     return (
         <>
@@ -257,10 +340,16 @@ const CarAdmin = () => {
                                             <td class="p-3 px-5"><input type="text" value={item.brand?.name || ''} class="bg-transparent" /></td>
                                             <td class="p-3 px-5"><input type="text" value={item.dateCreate || ''} class="bg-transparent" /></td>
                                             <td class="p-3 px-5 flex justify-end">
+<<<<<<< HEAD
                                                 <button type="button" onClick={() => editHandle(item)} class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Edit</button>
                                                 <button type="button" onClick={() => deleteHandle(item.id)} class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button></td>
                                         </tr>
 
+=======
+                                                <button type="button" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Edit</button>
+                                                <button type="button" onClick={() => deleteHandle(item.id)} class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button></td>
+                                        </tr>
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
                                     );
                                 })
                             }
@@ -356,6 +445,7 @@ const CarAdmin = () => {
                     <></>
                 )
             }
+<<<<<<< HEAD
             {
                 editForm ? (
                     <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
@@ -434,6 +524,8 @@ const CarAdmin = () => {
                     <></>
                 )
             }
+=======
+>>>>>>> 2abd1e41da6c9107b0ec7e89440f63d493ebd474
         </>
     )
 }
